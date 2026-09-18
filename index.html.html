@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدارس البيارق الأهلية - Dictation Weeks 3 & 4</title>
+    <style>
+        :root {
+            --primary-color: #0d5c3a;
+            --primary-dark: #073823;
+            --accent-color: #d4af37;
+            --accent-light: #fff8dc;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --white: #ffffff;
+            --shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: var(--white);
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-bottom: 3px;
+        }
+
+        nav {
+            background-color: var(--primary-dark);
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--accent-color);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav button:hover, nav button.active {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        main {
+            max-width: 950px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            flex: 1;
+            width: 100%;
+        }
+
+        .section {
+            display: none;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid #334155;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #334155;
+            background: #0f172a;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-start {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .btn-start:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            background: #0f172a;
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid var(--accent-color);
+            margin-top: 20px;
+        }
+
+        .staff-item {
+            text-align: center;
+        }
+
+        .staff-item strong {
+            display: block;
+            color: var(--accent-color);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .staff-item span {
+            color: #cbd5e1;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: #0f172a;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #334155;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .table-img {
+            width: 70px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid var(--accent-color);
+        }
+
+        .millionaire-container {
+            background: linear-gradient(180deg, #091224 0%, #030712 100%);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            border: 3px solid var(--accent-color);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .timer-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #0f172a;
+            border: 3px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .lifelines {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .lifeline-btn {
+            background: #1e293b;
+            border: 2px solid var(--accent-color);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .lifeline-btn:hover:not(:disabled) {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        .lifeline-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            border-color: #555;
+        }
+
+        .game-question {
+            background: #1e293b;
+            border: 2px solid var(--accent-color);
+            padding: 22px;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            margin-bottom: 25px;
+            direction: ltr;
+            font-weight: bold;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .game-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            direction: ltr;
+        }
+
+        @media (max-width: 600px) {
+            .game-options { grid-template-columns: 1fr; }
+        }
+
+        .option-btn {
+            background: #0f172a;
+            border: 2px solid #334155;
+            color: #fff;
+            padding: 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            text-align: left;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option-btn:hover {
+            border-color: var(--accent-color);
+            background: #1e293b;
+        }
+
+        .audience-chart {
+            display: none;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 130px;
+            background: #0f172a;
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+        }
+
+        .bar-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .bar {
+            width: 40px;
+            background: var(--accent-color);
+            color: #000;
+            font-weight: bold;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .certificate-box {
+            border: 10px double var(--accent-color);
+            padding: 3rem;
+            text-align: center;
+            background: #fffdf5;
+            color: #333;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .certificate-box h3 {
+            color: var(--primary-color);
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .certificate-student {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            margin: 1rem 0;
+            font-weight: bold;
+            border-bottom: 2px solid var(--accent-color);
+            display: inline-block;
+            padding: 0 35px;
+        }
+
+        .signatures-grid {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 2px dashed #cbd5e1;
+            direction: ltr;
+        }
+
+        .sig-block {
+            text-align: center;
+        }
+
+        .sig-block strong {
+            display: block;
+            color: var(--primary-color);
+        }
+
+        .btn-print {
+            background-color: var(--accent-color);
+            color: var(--primary-dark);
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .btn-print:hover {
+            background-color: #b89628;
+        }
+
+        @media print {
+            header, nav, .btn-print, .section:not(#certificate-section) {
+                display: none !important;
+            }
+            body { background: white; color: black; }
+            #certificate-section {
+                display: block !important;
+                border: none;
+            }
+            .certificate-box {
+                border: 10px double var(--accent-color);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>مدارس البيارق الأهلية</h1>
+        <p>إدارة الإشراف والتطوير التربوي - القسم الابتدائي</p>
+        <p>التطبيق التفاعلي لجدول الإملاء (Dictation Week 3 & Week 4)</p>
+    </header>
+
+    <nav>
+        <button onclick="showSection('welcome-section')" class="active">الرئيسية</button>
+        <button onclick="showSection('explain-section')">جدول الإملاء (Week 3 & 4)</button>
+        <button onclick="showSection('quiz-section')">مسابقة من سيربح المليون</button>
+        <button onclick="showSection('certificate-section')">الشهادة</button>
+    </nav>
+
+    <main>
+        <!-- 1. Welcome & Student Info -->
+        <div id="welcome-section" class="section active">
+            <h2>مرحباً بك في التطبيق التفاعلي للإملاء!</h2>
+            <p style="margin-bottom: 1.5rem; color: #cbd5e1;">عزيزي الطالب، أدخل اسمك وفصلك لبدء مراجعة كلمات الإملاء للأسبوعين الثالث والرابع واختبار معلوماتك مع مؤقت زمني مؤثّر.</p>
+            
+            <div class="form-group">
+                <label for="studentName">اسم الطالب الثلاثي:</label>
+                <input type="text" id="studentName" placeholder="أدخل اسمك الثلاثي...">
+            </div>
+            <div class="form-group">
+                <label for="studentClass">الصف / الفصل:</label>
+                <input type="text" id="studentClass" placeholder="أدخل الصف/الفصل هنا..." value="">
+            </div>
+
+            <div class="staff-grid">
+                <div class="staff-item">
+                    <strong>معلم المادة:</strong>
+                    <span>Mr. Mohamed Abdalla Attia</span>
+                </div>
+                <div class="staff-item">
+                    <strong>المشرف التربوي:</strong>
+                    <span>Mr. Mohammed Othman</span>
+                </div>
+                <div class="staff-item">
+                    <strong>قائد المدرسة:</strong>
+                    <span>Mr. Wael Jaafari</span>
+                </div>
+            </div>
+
+            <button class="btn-start" style="margin-top: 20px;" onclick="saveStudentInfo()">حفظ وابدأ التعلم</button>
+        </div>
+
+        <!-- 2. Dictation Vocabulary Lists -->
+        <div id="explain-section" class="section">
+            <h2>قوائم كلمات الإملاء (Dictation 3 & 4)</h2>
+            
+            <h3>Dictation 3 - Week 3</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Word</th>
+                        <th>الصورة التوضيحية</th>
+                        <th>#</th>
+                        <th>Word</th>
+                        <th>الصورة التوضيحية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>towel</td>
+                        <td><img src="https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=100&h=60&fit=crop" class="table-img" alt="towel"></td>
+                        <td><strong>6</strong></td>
+                        <td>spacesuit</td>
+                        <td><img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=100&h=60&fit=crop" class="table-img" alt="spacesuit"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>A tube of</td>
+                        <td><img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=100&h=60&fit=crop" class="table-img" alt="A tube of"></td>
+                        <td><strong>7</strong></td>
+                        <td>School trip</td>
+                        <td><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=100&h=60&fit=crop" class="table-img" alt="School trip"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>Space station</td>
+                        <td><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=100&h=60&fit=crop" class="table-img" alt="Space station"></td>
+                        <td><strong>8</strong></td>
+                        <td>planetarium</td>
+                        <td><img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=100&h=60&fit=crop" class="table-img" alt="planetarium"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>swallow</td>
+                        <td><img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=100&h=60&fit=crop" class="table-img" alt="swallow"></td>
+                        <td><strong>9</strong></td>
+                        <td>competition</td>
+                        <td><img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=100&h=60&fit=crop" class="table-img" alt="competition"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>Float away</td>
+                        <td><img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=100&h=60&fit=crop" class="table-img" alt="Float away"></td>
+                        <td><strong>10</strong></td>
+                        <td>event</td>
+                        <td><img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=100&h=60&fit=crop" class="table-img" alt="event"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin-top: 2rem;">Dictation 4 - Week 4</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Word</th>
+                        <th>الصورة التوضيحية</th>
+                        <th>#</th>
+                        <th>Word</th>
+                        <th>الصورة التوضيحية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>festival</td>
+                        <td><img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=100&h=60&fit=crop" class="table-img" alt="festival"></td>
+                        <td><strong>6</strong></td>
+                        <td>miss</td>
+                        <td><img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=100&h=60&fit=crop" class="table-img" alt="miss"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>Take part</td>
+                        <td><img src="https://images.unsplash.com/photo-1526676037777-05a232554f77?w=100&h=60&fit=crop" class="table-img" alt="Take part"></td>
+                        <td><strong>7</strong></td>
+                        <td>lose</td>
+                        <td><img src="https://images.unsplash.com/photo-1516534775068-ba3e7458af70?w=100&h=60&fit=crop" class="table-img" alt="lose"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>teammate</td>
+                        <td><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=100&h=60&fit=crop" class="table-img" alt="teammate"></td>
+                        <td><strong>8</strong></td>
+                        <td>Hang out</td>
+                        <td><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=100&h=60&fit=crop" class="table-img" alt="Hang out"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>score</td>
+                        <td><img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=100&h=60&fit=crop" class="table-img" alt="score"></td>
+                        <td><strong>9</strong></td>
+                        <td>Go shopping</td>
+                        <td><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=100&h=60&fit=crop" class="table-img" alt="Go shopping"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>shoot</td>
+                        <td><img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=100&h=60&fit=crop" class="table-img" alt="shoot"></td>
+                        <td><strong>10</strong></td>
+                        <td>Meet a friend</td>
+                        <td><img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=100&h=60&fit=crop" class="table-img" alt="Meet a friend"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 3. Who Wants to Be a Millionaire Game -->
+        <div id="quiz-section" class="section">
+            <h2>مسابقة من سيربح المليون (Week 3 & Week 4)</h2>
+            
+            <div class="millionaire-container">
+                <div class="timer-box" id="timer">30</div>
+
+                <div class="lifelines">
+                    <button class="lifeline-btn" id="btn5050" onclick="use5050()">✂️ حذف إجابتين (50:50)</button>
+                    <button class="lifeline-btn" onclick="callFriend()">📞 الاتصال بصديق</button>
+                    <button class="lifeline-btn" onclick="askAudience()">👥 رأي الجمهور</button>
+                </div>
+
+                <div class="game-question" id="gameQuestion">جاري إعداد السؤال...</div>
+
+                <div class="game-options" id="optionsContainer"></div>
+
+                <div class="audience-chart" id="audienceChart">
+                    <div class="bar-wrap"><div class="bar" id="barA">0%</div>A</div>
+                    <div class="bar-wrap"><div class="bar" id="barB">0%</div>B</div>
+                    <div class="bar-wrap"><div class="bar" id="barC">0%</div>C</div>
+                    <div class="bar-wrap"><div class="bar" id="barD">0%</div>D</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Certificate -->
+        <div id="certificate-section" class="section">
+            <h2>شهادة التميز والتقدير الإلكترونية</h2>
+            <div class="certificate-box">
+                <p style="font-weight: bold; color: #666; font-size: 1.1rem;">Al-Bayariq Private Schools - Elementary Section</p>
+                <h3>Electronic Certificate of Excellence</h3>
+                <p style="font-size: 1.1rem;">This is to certify that student:</p>
+                <div class="certificate-student" id="certName">اسم الطالب</div>
+                <p style="font-size: 1.1rem;">Grade / Class: <span id="certClass" style="font-weight: bold; color: var(--primary-color);"></span></p>
+                <p style="margin: 1.5rem 0; font-size: 1.15rem; line-height: 1.6;">has successfully completed all interactive spelling exercises and passed the <strong>"Who Wants to Be a Millionaire" Dictation Quiz (Week 3 & Week 4)</strong> with outstanding performance.</p>
+
+                <div class="signatures-grid">
+                    <div class="sig-block">
+                        <strong>English Teacher</strong>
+                        <span>Mr. Mohamed Abdalla Attia</span>
+                    </div>
+                    <div class="sig-block">
+                        <strong>English Supervisor</strong>
+                        <span>Mr. Mohammed Othman</span>
+                    </div>
+                    <div class="sig-block">
+                        <strong>School Principal</strong>
+                        <span>Mr. Wael Jaafari</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-print" onclick="window.print()">🖨️ طباعة الشهادة / حفظ كـ PDF</button>
+        </div>
+    </main>
+
+    <script>
+        let studentData = {
+            name: '',
+            class: ''
+        };
+
+        let timerInterval;
+        let timeLeft = 30;
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+        function playSound(type) {
+            try {
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'correct') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+                    osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15);
+                    gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.4);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.4);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.4);
+                } else if (type === 'lifeline') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.3);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.3);
+                } else if (type === 'tick') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(300, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.1);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.1);
+                }
+            } catch (e) {}
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 30;
+            document.getElementById('timer').innerText = timeLeft;
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+                if (timeLeft <= 5 && timeLeft > 0) {
+                    playSound('tick');
+                }
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    playSound('wrong');
+                    alert('⏰ انتهى الوقت! حاول مرة أخرى.');
+                    loadMillionaireQuestion();
+                }
+            }, 1000);
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(sec => sec.classList.remove('active'));
+            
+            const navButtons = document.querySelectorAll('nav button');
+            navButtons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(sectionId).classList.add('active');
+
+            if (sectionId === 'quiz-section') {
+                loadMillionaireQuestion();
+            } else {
+                clearInterval(timerInterval);
+            }
+        }
+
+        function saveStudentInfo() {
+            const nameInput = document.getElementById('studentName').value.trim();
+            const classInput = document.getElementById('studentClass').value.trim();
+
+            if(!nameInput) {
+                alert('يرجى كتابة اسم الطالب أولاً.');
+                return;
+            }
+
+            studentData.name = nameInput;
+            studentData.class = classInput;
+
+            document.getElementById('certName').innerText = nameInput;
+            document.getElementById('certClass').innerText = classInput;
+
+            alert('تم حفظ البيانات بنجاح! يمكنك الآن الانتقال لمراجعة الكلمات والمسابقة.');
+            showSection('explain-section');
+        }
+
+        const quizQuestions = [
+            {
+                q: "1. Astronauts wear a special ............. in space.",
+                options: ["spacesuit", "towel", "teammate", "festival"],
+                correct: 0
+            },
+            {
+                q: "2. We learn about planets and stars at the .............",
+                options: ["planetarium", "competition", "event", "school trip"],
+                correct: 0
+            },
+            {
+                q: "3. You need a ............. of toothpaste to brush your teeth.",
+                options: ["tube", "towel", "score", "festival"],
+                correct: 0
+            },
+            {
+                q: "4. A person on the same team is your .............",
+                options: ["teammate", "friend", "event", "competition"],
+                correct: 0
+            },
+            {
+                q: "5. To participate in an activity means to ............. in it.",
+                options: ["Take part", "Float away", "Hang out", "Go shopping"],
+                correct: 0
+            }
+        ];
+
+        let currentQIndex = 0;
+
+        function loadMillionaireQuestion() {
+            if(currentQIndex >= quizQuestions.length) {
+                finishGame();
+                return;
+            }
+
+            const qData = quizQuestions[currentQIndex];
+            document.getElementById('gameQuestion').innerText = qData.q;
+            document.getElementById('audienceChart').style.display = 'none';
+
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `<strong>${String.fromCharCode(65 + idx)}:</strong> ${opt}`;
+                btn.onclick = () => checkAnswer(idx);
+                optionsContainer.appendChild(btn);
+            });
+
+            startTimer();
+        }
+
+        function checkAnswer(selectedIdx) {
+            clearInterval(timerInterval);
+            const correctIdx = quizQuestions[currentQIndex].correct;
+            if(selectedIdx === correctIdx) {
+                playSound('correct');
+                alert('إجابة صحيحة! أحسنت 👏');
+                currentQIndex++;
+                loadMillionaireQuestion();
+            } else {
+                playSound('wrong');
+                alert('إجابة خاطئة! حاول مرة أخرى.');
+                startTimer();
+            }
+        }
+
+        function use5050() {
+            playSound('lifeline');
+            const correctIdx = quizQuestions[currentQIndex].correct;
+            const buttons = document.querySelectorAll('.option-btn');
+            let removed = 0;
+
+            buttons.forEach((btn, idx) => {
+                if(idx !== correctIdx && removed < 2) {
+                    btn.style.visibility = 'hidden';
+                    removed++;
+                }
+            });
+            document.getElementById('btn5050').disabled = true;
+        }
+
+        function callFriend() {
+            playSound('lifeline');
+            const correctIdx = quizQuestions[currentQIndex].correct;
+            const letter = String.fromCharCode(65 + correctIdx);
+            alert(`📞 الصديق يقول: "أنا واثق بنسبة 90% أن الإجابة الصحيحة هي (${letter})".`);
+        }
+
+        function askAudience() {
+            playSound('lifeline');
+            const chart = document.getElementById('audienceChart');
+            chart.style.display = 'flex';
+            
+            const correctIdx = quizQuestions[currentQIndex].correct;
+            const bars = ['barA', 'barB', 'barC', 'barD'];
+            
+            bars.forEach((barId, idx) => {
+                const bar = document.getElementById(barId);
+                let percent = idx === correctIdx ? 80 : 6;
+                bar.style.height = `${percent}%`;
+                bar.innerText = `${percent}%`;
+            });
+        }
+
+        function finishGame() {
+            clearInterval(timerInterval);
+            if(!studentData.name) {
+                alert('تهانينا! لقد أكملت مسابقة الإملاء بنجاح. يرجى كتابة اسمك في الصفحة الرئيسية لإصدار الشهادة.');
+                showSection('welcome-section');
+                return;
+            }
+
+            alert(`مبارك يا ${studentData.name}! لقد ربحت المليون في مسابقة الإملاء وحصلت على الشهادة 🏆`);
+            showSection('certificate-section');
+        }
+    </script>
+</body>
+</html>
